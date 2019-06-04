@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/List/DEFAULT_ACTION';
+export const LOAD_STRINGS = 'app/List/LOAD_STRINGS';

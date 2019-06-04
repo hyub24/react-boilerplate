@@ -11,6 +11,6 @@ export const scope = 'app.containers.List';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the List container!',
+    defaultMessage: 'List of Strings',
   },
 });

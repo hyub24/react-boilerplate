@@ -18,8 +18,9 @@ import makeSelectInput from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { handleInput, submitInput } from './actions';
 
-export function Input() {
+export function Input({ changeInput, onSubmitInput }) {
   useInjectReducer({ key: 'input', reducer });
   useInjectSaga({ key: 'input', saga });
 
@@ -31,15 +32,18 @@ export function Input() {
       </Helmet>
       <FormattedMessage {...messages.header} />
       <div>
-        <input type="text" />
-        <button type="button">Submit</button>
+        <input type="text" onChange={changeInput} />
+        <button type="button" onClick={onSubmitInput}>
+          Submit
+        </button>
       </div>
     </div>
   );
 }
 
 Input.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  changeInput: PropTypes.func,
+  onSubmitInput: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -48,7 +52,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    changeInput: e => dispatch(handleInput(e.target.value)),
+    onSubmitInput: () => dispatch(submitInput()),
   };
 }
 
