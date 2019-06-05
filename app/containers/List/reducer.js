@@ -30,6 +30,7 @@ const listReducer = (state = initialState, action) =>
       case LOAD_STRINGS_ERROR:
         draft.loading = false;
         draft.error = action.error;
+        break;
     }
   });
 

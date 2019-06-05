@@ -13,7 +13,4 @@ export default defineMessages({
     id: `${scope}.header`,
     defaultMessage: 'List of Strings',
   },
-  error: {
-    defaultMessage: 'Error loading strings!',
-  },
 });

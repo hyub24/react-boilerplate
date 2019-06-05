@@ -14,7 +14,6 @@ export function* postInput() {
       'Content-Type': 'application/json',
     },
   };
-  console.log(input);
 
   try {
     yield call(request, url, obj);

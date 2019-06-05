@@ -4,10 +4,17 @@
  *
  */
 import produce from 'immer';
-import { HANDLE_INPUT } from './constants';
+import {
+  HANDLE_INPUT,
+  SUBMIT_INPUT,
+  SUBMIT_INPUT_SUCCESS,
+  SUBMIT_INPUT_ERROR,
+} from './constants';
 
 export const initialState = {
   input: '',
+  posting: false,
+  error: null,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -16,6 +23,17 @@ const inputReducer = (state = initialState, action) =>
     switch (action.type) {
       case HANDLE_INPUT:
         draft.input = action.input;
+        break;
+      case SUBMIT_INPUT:
+        draft.posting = true;
+        break;
+      case SUBMIT_INPUT_SUCCESS:
+        draft.posting = false;
+        draft.error = null;
+        break;
+      case SUBMIT_INPUT_ERROR:
+        draft.posting = false;
+        draft.error = action.error;
         break;
     }
   });

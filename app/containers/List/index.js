@@ -19,7 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { loadStrings } from './actions';
-// import StringsList from '../../components/StringsList';
+import StringsList from '../../components/StringsList';
 
 export function List({ getStrings, list }) {
   useInjectReducer({ key: 'list', reducer });
@@ -35,14 +35,15 @@ export function List({ getStrings, list }) {
         <title>List</title>
         <meta name="description" content="Description of List" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
       {list.error ? (
         <div>
-          <FormattedMessage {...messages.error} />
-          <div>{list.error}</div>
+          <div>There has been an error: {list.error.message}</div>
         </div>
       ) : (
-        <div />
+        <div>
+          <FormattedMessage {...messages.header} />
+          <StringsList {...list} />
+        </div>
       )}
     </div>
   );
