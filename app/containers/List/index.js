@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -18,10 +18,16 @@ import makeSelectList from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { loadStrings } from './actions';
+// import StringsList from '../../components/StringsList';
 
-export function List() {
+export function List({ getStrings, list }) {
   useInjectReducer({ key: 'list', reducer });
   useInjectSaga({ key: 'list', saga });
+
+  useEffect(() => {
+    getStrings();
+  }, []);
 
   return (
     <div>
@@ -30,12 +36,22 @@ export function List() {
         <meta name="description" content="Description of List" />
       </Helmet>
       <FormattedMessage {...messages.header} />
+      {list.error ? (
+        <div>
+          <FormattedMessage {...messages.error} />
+          <div>{list.error}</div>
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 }
 
 List.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
+  getStrings: PropTypes.func,
+  list: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -44,7 +60,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    getStrings: () => dispatch(loadStrings()),
   };
 }
 
