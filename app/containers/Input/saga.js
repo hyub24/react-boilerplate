@@ -1,8 +1,9 @@
-import { takeLatest, call, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { SUBMIT_INPUT } from './constants';
 // import { submitInput } from './actions';
 import makeSelectInput from './selectors';
 import request from '../../utils/request';
+import { inputSubmittingError, inputSubmitted } from './actions';
 
 export function* postInput() {
   const input = yield select(makeSelectInput());
@@ -17,8 +18,9 @@ export function* postInput() {
 
   try {
     yield call(request, url, obj);
-  } catch (err) {
-    console.log(err);
+    yield put(inputSubmitted());
+  } catch (error) {
+    yield put(inputSubmittingError(error));
   }
 }
 // Individual exports for testing

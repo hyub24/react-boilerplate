@@ -14,6 +14,7 @@ import {
 export const initialState = {
   input: '',
   posting: false,
+  posted: false,
   error: null,
 };
 
@@ -23,17 +24,23 @@ const inputReducer = (state = initialState, action) =>
     switch (action.type) {
       case HANDLE_INPUT:
         draft.input = action.input;
+        draft.posted = false;
+        draft.error = null;
         break;
       case SUBMIT_INPUT:
         draft.posting = true;
+        draft.posted = false;
+        draft.error = null;
         break;
       case SUBMIT_INPUT_SUCCESS:
         draft.posting = false;
         draft.error = null;
+        draft.posted = true;
         break;
       case SUBMIT_INPUT_ERROR:
         draft.posting = false;
         draft.error = action.error;
+        draft.posted = false;
         break;
     }
   });

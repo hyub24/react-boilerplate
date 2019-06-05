@@ -20,10 +20,10 @@ import saga from './saga';
 import messages from './messages';
 import { handleInput, submitInput } from './actions';
 
-export function Input({ changeInput, onSubmitInput }) {
+export function Input({ changeInput, onSubmitInput, input }) {
   useInjectReducer({ key: 'input', reducer });
   useInjectSaga({ key: 'input', saga });
-
+  console.log(input);
   return (
     <div>
       <Helmet>
@@ -37,6 +37,8 @@ export function Input({ changeInput, onSubmitInput }) {
           Submit
         </button>
       </div>
+      {input.posted ? <div>String successfully posted!</div> : null}
+      {input.error ? <div>{input.error.message}</div> : null}
     </div>
   );
 }
@@ -44,6 +46,7 @@ export function Input({ changeInput, onSubmitInput }) {
 Input.propTypes = {
   changeInput: PropTypes.func,
   onSubmitInput: PropTypes.func,
+  input: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
