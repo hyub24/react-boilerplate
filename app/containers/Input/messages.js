@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.header`,
     defaultMessage: 'Input String Here',
   },
+  successfulPost: {
+    id: `${scope}.successfulPost`,
+    defaultMessage: 'String Successfully Posted!',
+  },
 });

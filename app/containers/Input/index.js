@@ -19,6 +19,9 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { handleInput, submitInput } from './actions';
+import Header from '../../components/Header/index';
+import InputWrapper from '../../components/InputWrapper';
+import StyledLink from '../../components/StyledLink';
 
 export function Input({ changeInput, onSubmitInput, input }) {
   useInjectReducer({ key: 'input', reducer });
@@ -30,15 +33,23 @@ export function Input({ changeInput, onSubmitInput, input }) {
         <title>Input</title>
         <meta name="description" content="Description of Input" />
       </Helmet>
-      <FormattedMessage {...messages.header} />
+      <StyledLink to="/list">Strings List</StyledLink>
+      <hr />
+      <Header>
+        <FormattedMessage {...messages.header} />
+      </Header>
       <div>
-        <input type="text" onChange={changeInput} />
+        <InputWrapper type="text" onChange={changeInput} />
         <button type="button" onClick={onSubmitInput}>
           Submit
         </button>
       </div>
-      {input.posted ? <div>String successfully posted!</div> : null}
-      {input.error ? <div>{input.error.message}</div> : null}
+      <Header>
+        {input.posted ? (
+          <FormattedMessage {...messages.successfulPost} />
+        ) : null}
+        {input.error ? <div>{input.error.message}</div> : null}
+      </Header>
     </div>
   );
 }
