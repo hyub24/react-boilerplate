@@ -26,7 +26,7 @@ import StyledLink from '../../components/StyledLink';
 export function Input({ changeInput, onSubmitInput, input }) {
   useInjectReducer({ key: 'input', reducer });
   useInjectSaga({ key: 'input', saga });
-  console.log(input);
+
   return (
     <div>
       <Helmet>
