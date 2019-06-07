@@ -1,13 +1,13 @@
-// import { defaultAction } from '../actions';
-// import { DEFAULT_ACTION } from '../constants';
+import { submitInput } from '../actions';
+import { SUBMIT_INPUT } from '../constants';
 
-// describe('Input actions', () => {
-//   describe('Default Action', () => {
-//     it('has a type of DEFAULT_ACTION', () => {
-//       const expected = {
-//         type: DEFAULT_ACTION,
-//       };
-//       expect(defaultAction()).toEqual(expected);
-//     });
-//   });
-// });
+describe('Input actions', () => {
+  describe('submitInput action', () => {
+    it('has a type of SUBMIT_INPUT', () => {
+      const expected = {
+        type: SUBMIT_INPUT,
+      };
+      expect(submitInput()).toEqual(expected);
+    });
+  });
+});

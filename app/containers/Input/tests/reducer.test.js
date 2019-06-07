@@ -7,7 +7,10 @@ describe('inputReducer', () => {
   let state;
   beforeEach(() => {
     state = {
-      // default state params here
+      input: '',
+      posting: false,
+      posted: false,
+      error: null,
     };
   });
 
