@@ -2,6 +2,17 @@
 
 exports[`<App /> should render and match the snapshot 1`] = `
 <div>
+  <ForwardRef
+    to="/"
+  >
+    String Input
+  </ForwardRef>
+  <ForwardRef
+    to="/list"
+  >
+    Strings List
+  </ForwardRef>
+  <hr />
   <Switch>
     <Route
       component={[Function]}

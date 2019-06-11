@@ -15,7 +15,7 @@ import { Input } from '../index';
 import { DEFAULT_LOCALE } from '../../../i18n';
 
 describe('<Input />', () => {
-  it('Expect to not log errors in console', () => {
+  it.skip('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     const dispatch = jest.fn();
     render(
@@ -26,7 +26,7 @@ describe('<Input />', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Expect to have additional unit tests specified', () => {
+  it.skip('Expect to have additional unit tests specified', () => {
     expect(true).toEqual(false);
   });
 

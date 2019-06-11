@@ -14,14 +14,13 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectList from './selectors';
+import { makeSelectList } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { loadStrings } from './actions';
 import StringsList from '../../components/StringsList';
 import Header from '../../components/Header/index';
-import StyledLink from '../../components/StyledLink';
 
 export function List({ getStrings, list }) {
   useInjectReducer({ key: 'list', reducer });
@@ -37,8 +36,6 @@ export function List({ getStrings, list }) {
         <title>List</title>
         <meta name="description" content="Description of List" />
       </Helmet>
-      <StyledLink to="/">String Input</StyledLink>
-      <hr />
       <Header>
         <FormattedMessage {...messages.header} />
       </Header>
@@ -59,7 +56,7 @@ const mapStateToProps = createStructuredSelector({
   list: makeSelectList(),
 });
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     getStrings: () => dispatch(loadStrings()),
   };

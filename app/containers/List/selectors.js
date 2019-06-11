@@ -32,5 +32,5 @@ const makeSelectList = () =>
     }),
   );
 
-export default makeSelectList;
-// export { selectListDomain };
+// export default makeSelectList;
+export { selectListDomain, makeSelectList };

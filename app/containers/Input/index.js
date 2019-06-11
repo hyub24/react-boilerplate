@@ -21,7 +21,6 @@ import messages from './messages';
 import { handleInput, submitInput } from './actions';
 import Header from '../../components/Header/index';
 import InputWrapper from '../../components/InputWrapper';
-import StyledLink from '../../components/StyledLink';
 
 export function Input({ changeInput, onSubmitInput, input }) {
   useInjectReducer({ key: 'input', reducer });
@@ -33,8 +32,6 @@ export function Input({ changeInput, onSubmitInput, input }) {
         <title>Input</title>
         <meta name="description" content="Description of Input" />
       </Helmet>
-      <StyledLink to="/list">Strings List</StyledLink>
-      <hr />
       <Header>
         <FormattedMessage {...messages.header} />
       </Header>
